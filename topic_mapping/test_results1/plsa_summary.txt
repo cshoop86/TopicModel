@@ -1,0 +1,184 @@
+topic: 0 #words: 28 pt: 0.168911
+easy button radio snooze star hard top station pro con head face accurate coby cd size picture cheap sleep travel timex atomic money difficult fact option cool home 
+topic: 1 #words: 17 pt: 0.106487
+sound setting volume reason wake reviewer control nap soother option annoying travel loud difficult cool stuff face 
+topic: 2 #words: 12 pt: 0.0514076
+white noise plastic short part color cheap cd simple loud past mattress 
+topic: 3 #words: 21 pt: 0.126071
+dark room small number big digital window piece glass couple colon music annoying coby simple size picture difficult home actual stuff 
+topic: 4 #words: 12 pt: 0.0746634
+bright display large buzz bell size travel annoying loud atomic lovely mattress 
+topic: 5 #words: 10 pt: 0.0758874
+light sleeper mine sunrise loud face annoying difficult actual gift 
+topic: 6 #words: 10 pt: 0.0403917
+design poor switch flaw original coby cd cheap accurate difficult 
+topic: 7 #words: 7 pt: 0.0489596
+battery power aa main buy lovely face 
+topic: 8 #words: 7 pt: 0.0379437
+minute seconds hour actual replacement coby sleep 
+topic: 9 #words: 11 pt: 0.0477356
+morning bed house heart christmas sleep loud timex fact lovely stuff 
+topic: 10 #words: 3 pt: 0.0134639
+indiglo backlight sleep 
+topic: 11 #words: 10 pt: 0.0489596
+night bedside table loud simple timex difficult fact past cool 
+topic: 12 #words: 4 pt: 0.0208078
+feature misleading size picture 
+topic: 13 #words: 4 pt: 0.0220318
+job instruction simple difficult 
+topic: 14 #words: 1 pt: 0.00122399
+coby 
+topic: 15 #words: 1 pt: 0.00122399
+simple 
+topic: 16 #words: 1 pt: 0.00122399
+christmas 
+topic: 17 #words: 1 pt: 0.00122399
+price 
+topic: 18 #words: 1 pt: 0.00122399
+cheap 
+topic: 19 #words: 1 pt: 0.00122399
+original 
+topic: 20 #words: 2 pt: 0.00244798
+simple travel 
+topic: 21 #words: 1 pt: 0.00122399
+travel 
+topic: 22 #words: 1 pt: 0.00122399
+money 
+topic: 23 #words: 1 pt: 0.00122399
+price 
+topic: 24 #words: 1 pt: 0.00122399
+christmas 
+topic: 25 #words: 1 pt: 0.00122399
+annoying 
+topic: 26 #words: 1 pt: 0.00122399
+price 
+topic: 27 #words: 1 pt: 0.00122399
+replacement 
+topic: 28 #words: 1 pt: 0.00122399
+cheap 
+topic: 29 #words: 2 pt: 0.00244798
+simple travel 
+topic: 30 #words: 2 pt: 0.00244798
+size travel 
+topic: 31 #words: 1 pt: 0.00122399
+option 
+topic: 32 #words: 2 pt: 0.00244798
+money buy 
+topic: 33 #words: 1 pt: 0.00122399
+travel 
+topic: 34 #words: 2 pt: 0.00244798
+travel money 
+topic: 35 #words: 1 pt: 0.00122399
+past 
+topic: 36 #words: 1 pt: 0.00122399
+past 
+topic: 37 #words: 1 pt: 0.00122399
+cool 
+topic: 38 #words: 1 pt: 0.00122399
+home 
+topic: 39 #words: 1 pt: 0.00122399
+simple 
+topic: 40 #words: 3 pt: 0.00367197
+replacement travel timex 
+topic: 41 #words: 1 pt: 0.00122399
+home 
+topic: 42 #words: 1 pt: 0.00122399
+travel 
+topic: 43 #words: 1 pt: 0.00122399
+face 
+topic: 44 #words: 1 pt: 0.00122399
+simple 
+topic: 45 #words: 2 pt: 0.00244798
+timex option 
+topic: 46 #words: 1 pt: 0.00122399
+annoying 
+topic: 47 #words: 1 pt: 0.00367197
+cheap 
+topic: 48 #words: 1 pt: 0.00122399
+atomic 
+topic: 49 #words: 1 pt: 0.00122399
+atomic 
+topic: 50 #words: 1 pt: 0.00122399
+cd 
+topic: 51 #words: 1 pt: 0.00122399
+money 
+topic: 52 #words: 1 pt: 0.00122399
+sleep 
+topic: 53 #words: 1 pt: 0.00122399
+price 
+topic: 54 #words: 1 pt: 0.00122399
+price 
+topic: 55 #words: 1 pt: 0.00122399
+money 
+topic: 56 #words: 1 pt: 0.00122399
+cool 
+topic: 57 #words: 1 pt: 0.00122399
+buy 
+topic: 58 #words: 1 pt: 0.00122399
+cheap 
+topic: 59 #words: 1 pt: 0.00122399
+fact 
+topic: 60 #words: 2 pt: 0.00244798
+christmas gift 
+topic: 61 #words: 1 pt: 0.00244798
+cool 
+topic: 62 #words: 1 pt: 0.00122399
+lovely 
+topic: 63 #words: 1 pt: 0.00122399
+loud 
+topic: 64 #words: 1 pt: 0.00122399
+face 
+topic: 65 #words: 1 pt: 0.00122399
+stuff 
+topic: 66 #words: 1 pt: 0.00122399
+loud 
+topic: 67 #words: 1 pt: 0.00122399
+option 
+topic: 68 #words: 1 pt: 0.00122399
+mattress 
+topic: 69 #words: 1 pt: 0.00122399
+mattress 
+topic: 70 #words: 1 pt: 0.00122399
+review 
+topic: 71 #words: 1 pt: 0.00122399
+cheap 
+topic: 72 #words: 1 pt: 0.00122399
+gift 
+topic: 73 #words: 1 pt: 0.00122399
+money 
+topic: 74 #words: 1 pt: 0.00122399
+original 
+topic: 75 #words: 1 pt: 0.00122399
+simple 
+topic: 76 #words: 1 pt: 0.00122399
+price 
+topic: 77 #words: 1 pt: 0.00122399
+option 
+topic: 78 #words: 1 pt: 0.00122399
+review 
+topic: 79 #words: 1 pt: 0.00122399
+picture 
+topic: 80 #words: 2 pt: 0.00244798
+sleep loud 
+topic: 81 #words: 1 pt: 0.00122399
+past 
+topic: 82 #words: 2 pt: 0.00244798
+travel review 
+topic: 83 #words: 2 pt: 0.00244798
+atomic accurate 
+topic: 84 #words: 2 pt: 0.00244798
+replacement atomic 
+topic: 85 #words: 1 pt: 0.00122399
+simple 
+topic: 86 #words: 1 pt: 0.00122399
+travel 
+topic: 87 #words: 1 pt: 0.00122399
+cheap 
+topic: 88 #words: 2 pt: 0.00244798
+cheap travel 
+topic: 89 #words: 1 pt: 0.00122399
+review 
+topic: 90 #words: 1 pt: 0.00122399
+buy 
+topic: 91 #words: 1 pt: 0.00122399
+gift 
