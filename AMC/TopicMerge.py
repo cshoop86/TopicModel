@@ -34,7 +34,7 @@ from TopicModel.AMC.ReadAndWrite import get_topic_list_from_col
 def kl(P, Q):
     '''
     计算两个ndarray的kl散度
-    KL散度仅当概率P和Q各自总和均为1，且对于任何i皆满足Q(i)>0及P(i)>0时，才有定义
+    KL散度仅当概率P和Q各自总和均为1，且对于任何i皆满足Q(line)>0及P(line)>0时，才有定义
     '''
     return sum(P * log(P / Q)) if (P > 0).all() and (Q > 0).all() else None
     # return sum(where((P > 0).all() and (Q > 0).all(), P * log(P / Q), None), axis=0)
@@ -59,7 +59,7 @@ def cal_topics_similar(tw_dist_filename, topic_similar_mat_filename=None):
 
     # # 方法3（非对称kl散度）
     # topic_similar_mat = zeros([len(tw_dist_ndaray), len(tw_dist_ndaray)])
-    # for i_id, i in enumerate(tw_dist_ndaray):
+    # for i_id, line in enumerate(tw_dist_ndaray):
     # for j_id, j in enumerate(tw_dist_ndaray):
     # if i_id != j_id:
     # topic_similar_mat[i_id, j_id] = stats.entropy(tw_dist_ndaray[i_id], tw_dist_ndaray[j_id])

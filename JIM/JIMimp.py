@@ -55,7 +55,7 @@ class JIM:
 
             user_location.setdefault(user_id,[])
             user_location[user_id].append(business_id)
-            if not location_longtitude_latituede.has_key(business_id):
+            if business_id not in location_longtitude_latituede:
                 location_longtitude_latituede[business_id] =[float(longitude),float(latitude)]
 
             #print count_cubic_u
@@ -64,9 +64,9 @@ class JIM:
         locations =list(locations)
         dict_categories = list(set(dict_categories))
 
-        print "length of users: "+ str(len(users))
-        print "length of locations: " + str(len(locations))
-        print "length of the dictionary of categories: " +str(len(dict_categories))
+        print("length of users: "+ str(len(users)))
+        print("length of locations: " + str(len(locations)))
+        print("length of the dictionary of categories: " +str(len(dict_categories)))
 
         return count_cubic_u,users,dict_categories,locations,user_location,location_longtitude_latituede
 
@@ -92,14 +92,14 @@ class JIM:
 
         par['zw'] = [[0 for w in range(par['W'])] for z in range(par['T'])]
         # par['zs'] = [[0 for s in range(par['S'])] for z in range(par['T'])]
-        # par['zsc'] = [[[0 for c in range(par['C'])] for s in range(par['S'])] for t in range(par['T'])]
+        # par['zsc'] = [[[0 for c in range(par['C'])] for s in range(par['S'])] for m in range(par['T'])]
         par['rv'] = [[0 for v in range(par['V'])] for r in range(par['R'])]
         par['uz'] = [[0 for z in range(par['T'])] for u in range(par['U'])]
         par['ur'] = [[0 for r in range(par['R'])] for u in range(par['U'])]
 
 
         par['zw_sum'] = [0 for i in range(par['T'])]
-        # par['zs_sum'] =  [0 for i in range(par['T'])]
+        # par['zs_sum'] =  [0 for line in range(par['T'])]
         # par['zsc_sum'] =[[0 for s in range(par['S'])] for z in range(par['T'])]
         par['rv_sum'] = [0 for i in range(par['R'])]
         par['uz_sum'] = [0 for i in range(par['U'])]
@@ -108,28 +108,28 @@ class JIM:
 
 
 
-        par['N'] =[len(count_cubic_u[users[i]]) for i in range(len(users))]
+        par['N1'] =[len(count_cubic_u[users[i]]) for i in range(len(users))]
 
         par['users'] = users
         par['user_id'] = {users[i]:i for i in range(len(users))}
         par['locations'] = locations
         par['location_id'] ={locations[i]:i for i in range(len(locations))}
-        # par['contendword_id'] = {dict_contents[i]:i for i in range(len(dict_contents))}
+        # par['contendword_id'] = {dict_contents[line]:line for line in range(len(dict_contents))}
         par['categories_id'] = {dict_catagories[i]:i for i in range(len(dict_catagories))}
 
         par['categoriesdic'] = dict_catagories
         par['location_lola'] = location_longtitude_latituede
 
 
-        # par['contends'] = [[count_cubic_u[users[i]][user_location[users[i]][j]]['text'] for j in range(par['N'][i])]for i in range(par['U'])]
-        par['categories'] = [[count_cubic_u[users[i]][user_location[users[i]][j]]['categories'] for j in range(par['N'][i])]for i in range(par['U'])]
+        # par['contends'] = [[count_cubic_u[users[line]][user_location[users[line]][j]]['text'] for j in range(par['N1'][line])]for line in range(par['U'])]
+        par['categories'] = [[count_cubic_u[users[i]][user_location[users[i]][j]]['categories'] for j in range(par['N1'][i])]for i in range(par['U'])]
 
-        par['l'] = [[user_location[users[i]][j] for j in range(par['N'][i])] for i in range(len(users))]
+        par['l'] = [[user_location[users[i]][j] for j in range(par['N1'][i])] for i in range(len(users))]
         par['lv']= [[[count_cubic_u[users[i]][user_location[users[i]][j]]['latitude'],count_cubic_u[users[i]][user_location[users[i]][j]]['longitude']]
-                     for j in range(par['N'][i])] for i in range(par['U'])]
-        par['z'] = [[random.randrange(0,par['T']) for _ in range(par['N'][u])] for u in range(par['U'])]   # the topic of the item
-        par['r'] = [[random.randrange(0,par['R']) for _ in range(par['N'][u])] for u in range(par['U'])]   # the region of the item
-        # par['s'] = [[random.randrange(0,par['S']) for _ in range(par['N'][u])] for u in range(par['U'])]
+                     for j in range(par['N1'][i])] for i in range(par['U'])]
+        par['z'] = [[random.randrange(0,par['T']) for _ in range(par['N1'][u])] for u in range(par['U'])]   # the topic of the item
+        par['r'] = [[random.randrange(0,par['R']) for _ in range(par['N1'][u])] for u in range(par['U'])]   # the region of the item
+        # par['s'] = [[random.randrange(0,par['S']) for _ in range(par['N1'][u])] for u in range(par['U'])]
         par['user_hometown'] = [[0.0,0.0 ] for _ in range(par['U'])]
         self.user_hometown(par)
         self.initiate_region(par)
@@ -158,7 +158,7 @@ class JIM:
         num = [0 for _ in range(par['R'])]
         total = [[0 for _ in  range(2)] for _ in range(par['R'])]
         for u in range(par['U']):
-            for i in range(par['N'][u]):
+            for i in range(par['N1'][u]):
                 r = par['r'][u][i]
                 total[r][0] += par['lv'][u][i][0]
                 total[r][1] += par['lv'][u][i][1]
@@ -169,7 +169,7 @@ class JIM:
         totalsigma =[[0 for _ in range(2) ] for _ in range(par['R'])]
 
         for u in range(par['U']):
-            for i in range(par['N'][u]):
+            for i in range(par['N1'][u]):
                 r = par['r'][u][i]
                 x = par['lv'][u][i][0] - par['mu'][r][0]
                 x = x*x
@@ -198,13 +198,13 @@ class JIM:
 
     def initial_counts(self,par):
         for u in range(par['U']):
-            for i in range(par['N'][u]):
+            for i in range(par['N1'][u]):
                 topic = par['z'][u][i]
                 region = par['r'][u][i]
-                # sentiment = par['s'][u][i]
+                # sentiment = par['s'][u][line]
                 location = par['l'][u][i]
                 location_id = par['location_id'][location]
-                # contends = par['contends'][u][i]
+                # contends = par['contends'][u][line]
                 categories = par['categories'][u][i]
 
 
@@ -246,7 +246,7 @@ class JIM:
 
         #print region_cluster
         for u in range(par['U']):
-            for i in range(par['N'][u]):
+            for i in range(par['N1'][u]):
                 location = par['l'][u][i]
                 location_id = par['location_id'][location]
                 par['r'][u][i] = int(region_cluster[location_id])
@@ -262,7 +262,7 @@ class JIM:
     def gibbssampling(self,par):
         for iteration in range(par['max_iterations']):
             for u in range(par['U']):
-                for i in range(par['N'][u]):
+                for i in range(par['N1'][u]):
                     location = par['l'][u][i]
                     location_id = par['location_id'][location]
 
@@ -354,14 +354,14 @@ class JIM:
 
 
 
-            print "iteration "+str(iteration)
+            print("iteration "+str(iteration))
             # print par['zs']
-            print par['uz'][0]
-            print par['ur'][0]
+            print(par['uz'][0])
+            print(par['ur'][0])
 
             self.update_parameters(par)
             if iteration % 100 ==0:
-                print "iteration: "+str(iteration) +"has been down "
+                print("iteration: "+str(iteration) +"has been down ")
             if iteration > 100:
                 # self.output_parameters(par)
                 self.output_file(par)
@@ -382,12 +382,12 @@ class JIM:
         for u in range(par['U']):
             tempu_1 = 0.0
             tempu_2 = 0.0
-            for i in range(par['N'][u]):
+            for i in range(par['N1'][u]):
                 tempu_1 += par['lv'][u][i][0]
                 tempu_2 += par['lv'][u][i][1]
 
-            tempu_1 = tempu_1 /(par['N'][u])
-            tempu_2 = tempu_2 /(par['N'][u])
+            tempu_1 = tempu_1 /(par['N1'][u])
+            tempu_2 = tempu_2 /(par['N1'][u])
             par['user_hometown'][u][0] = tempu_1
             par['user_hometown'][u][1] = tempu_2
 
@@ -423,7 +423,7 @@ class JIM:
         while clusterChanged:
             clusterChanged = False
             ## for each sample
-            for i in xrange(numSamples):
+            for i in range(numSamples):
                 minDist  = 100000.0
                 minIndex = 0
                 ## for each centroid
@@ -444,7 +444,7 @@ class JIM:
                 pointsInCluster = dataSet[nonzero(clusterAssment[:, 0].A == j)[0]]
                 centroids[j, :] = mean(pointsInCluster, axis = 0)
 
-        print 'Congratulations, cluster complete!'
+        print('Congratulations, cluster complete!')
         return centroids, clusterAssment
 
 

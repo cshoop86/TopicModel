@@ -2,7 +2,7 @@
 """
 Using custom colors
 ====================
-Using the recolor method and custom coloring functions.
+Using the recolor METHOD and custom coloring functions.
 """
 
 from os import path

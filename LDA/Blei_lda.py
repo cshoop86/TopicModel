@@ -18,26 +18,26 @@ __mtime__ = '12/24/2014-024'
                   ┃┫┫  ┃┫┫
                   ┗┻┛  ┗┻┛
 """
-from collections import defaultdict
 from os import path
-from gensim import corpora, models
+
 import matplotlib.pyplot as plt
 import numpy as np
+from gensim import corpora, models
 from scipy import spatial
 
 
 def build_model(dat, vocab, num_topics=100, alpha=None):
     """
-    loading data & training lda model
+    loading items & training lda model
     """
     if not path.exists(dat) or not path.exists(vocab):
-        print('Error: Expected data to be present at ./datasets/ap/')
+        print('Error: Expected items to be present at ./datasets/ap/')
     # Corpus is just the preloaded list of words
     # dat:term_num term_id:term_freq ... for each line
     # vocab:term for each line(line no is term_id implicit)
     corpus = corpora.BleiCorpus(dat, vocab)  # class 'gensim.corpora.bleicorpus.BleiCorpus
     # #doc_line=2246 #vocab=10473
-    # print(corpus.id2word)   #{0: 'i', 1: 'new', 2: 'percent'...} same as vocab:word_id:word
+    # print(corpus.id2word)   #{0: 'line', 1: 'new', 2: 'percent'...} same as vocab:word_id:word
     model = models.LdaModel(corpus, num_topics=num_topics, alpha=alpha, id2word=corpus.id2word)
     # corpus_list = [c for c in corpus]
     # print 'len(corpus_list[0]) = ', len(corpus_list[0]), '\n', corpus_list[0] #<=>ap.dat line 1
@@ -60,7 +60,7 @@ def lookup_doci_topic(topics, doc_id=0):
     """
     lookup doci对应的topic_id及topic_str
     """
-    doc_topics = topics[doc_id]  # topic_id-topic_weight tuple list for doc_line i
+    doc_topics = topics[doc_id]  # topic_id-topic_weight tuple list for doc_line line
     doci_topic_ids = [topic[0] for topic in topics[doc_id]]
     # doci所有topic_id对应的str, a part of model.show_topics()
     doci_topic_strs = [model.show_topic(topicid=t, topn=3) for t in doci_topic_ids]
@@ -85,7 +85,7 @@ def draw_topicnum_docnum_hist(all_topics):
     # docnum = list(topicno_docnum.values())
     # # plt.subplot(211)
     # plt.hist([topicno], list(range(100)), weights=[docnum])
-    # plt.title('i write')
+    # plt.title('line write')
     # plt.xlabel('Nr of all_topics')
     # plt.ylabel('Nr of documents')
     # plt.subplot(212)
@@ -126,11 +126,11 @@ def compute_pairwise_dist(doc_topic_mat):
     compute all pairwise distances from sparse doc_topic_mat
     """
     # pairwise_dist = numpy.zeros((len(topics), len(topics)))
-    # for i, doc_i_vec in enumerate(doc_topic_mat):
-    # for j in list(range(i + 1, len(topics))):
+    # for line, doc_i_vec in enumerate(doc_topic_mat):
+    # for j in list(range(line + 1, len(topics))):
     # doc_delta = doc_i_vec - doc_topic_mat[j]
-    # pairwise_dist[i][j] = scipy.linalg.norm(doc_delta)
-    # pairwise_dist[j][i] = pairwise_dist[i][j]
+    # pairwise_dist[line][j] = scipy.linalg.norm(doc_delta)
+    # pairwise_dist[j][line] = pairwise_dist[line][j]
     # print 'pairwise_dist: \n', pairwise_dist[:5][:5], '\n'
     pairwise_dist = spatial.distance.pdist(doc_topic_mat)  # ndarray : condensed distance matrix
     pairwise_dist = spatial.distance.squareform(pairwise_dist)

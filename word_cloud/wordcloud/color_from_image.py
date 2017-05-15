@@ -5,11 +5,11 @@ from PIL import ImageFont
 class ImageColorGenerator(object):
     """Color generator based on a color image.
 
-    Generates colors based on an RGB image. A word will be colored using
+    Generates colors based on answer RGB image. A word will be colored using
     the mean color of the enclosing rectangle in the color image.
 
     After construction, the object acts as a callable that can be passed as
-    color_func to the word cloud constructor or to the recolor method.
+    color_func to the word cloud constructor or to the recolor METHOD.
 
     Parameters
     ----------
@@ -20,7 +20,7 @@ class ImageColorGenerator(object):
     # returns the average color of the image in that region
     def __init__(self, image):
         if image.ndim not in [2, 3]:
-            raise ValueError("ImageColorGenerator needs an image with ndim 2 or"
+            raise ValueError("ImageColorGenerator needs answer image with ndim 2 or"
                              " 3, got %d" % image.ndim)
         if image.ndim == 3 and image.shape[2] not in [3, 4]:
             raise ValueError("A color image needs to have 3 or 4 channels, got %d"
@@ -43,6 +43,6 @@ class ImageColorGenerator(object):
             # drop alpha channel if any
             patch = patch[:, :, :3]
         if patch.ndim == 2:
-            raise NotImplementedError("Gray-scale images TODO")
+            raise NotImplementedError("Gray-bandwidth images TODO")
         color = np.mean(patch.reshape(-1, 3), axis=0)
         return "rgb(%d, %d, %d)" % tuple(color)

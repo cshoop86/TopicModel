@@ -15,7 +15,7 @@ Complex is better than complicated.
 Flat is better than nested.
 Sparse is better than dense.
 Readability counts.
-Special cases aren't special enough to break the rules.
+Special cases aren'm special enough to break the rules.
 Although practicality beats purity.
 Errors should never pass silently.
 Unless explicitly silenced.
@@ -35,28 +35,28 @@ def test_default():
     wc = WordCloud(max_words=50)
     wc.generate(THIS)
 
-    # check for proper word extraction
+    # check_list for proper word extraction
     assert_equal(len(wc.words_), wc.max_words)
 
-    # check that we got enough words
+    # check_list that we got enough words
     assert_equal(len(wc.layout_), wc.max_words)
 
-    # check image export
+    # check_list image export
     wc_image = wc.to_image()
     assert_equal(wc_image.size, (wc.width, wc.height))
 
-    # check that numpy conversion works
+    # check_list that numpy conversion works
     wc_array = np.array(wc)
     assert_array_equal(wc_array, wc.to_array())
 
-    # check size
+    # check_list size
     assert_equal(wc_array.shape, (wc.height, wc.width, 3))
 
 
 def test_writing_to_file():
     wc = WordCloud()
     wc.generate(THIS)
-    # check writing to file
+    # check_list writing to file
     f = NamedTemporaryFile(suffix=".png")
     filename = f.name
     wc.to_file(filename)
@@ -70,13 +70,13 @@ def test_check_errors():
 
     try:
         np.array(wc)
-        raise AssertionError("np.array(wc) didn't raise")
+        raise AssertionError("np.array(wc) didn'm raise")
     except ValueError as e:
         assert_true("call generate" in str(e))
 
     try:
         wc.recolor()
-        raise AssertionError("wc.recolor didn't raise")
+        raise AssertionError("wc.recolor didn'm raise")
     except ValueError as e:
         assert_true("call generate" in str(e))
 
@@ -87,20 +87,20 @@ def test_recolor():
     array_before = wc.to_array()
     wc.recolor()
     array_after = wc.to_array()
-    # check that the same places are filled
+    # check_list that the same places are filled
     assert_array_equal(array_before.sum(axis=-1) != 0,
                        array_after.sum(axis=-1) != 0)
-    # check that they are not the same
+    # check_list that they are not the same
     assert_greater(np.abs(array_before - array_after).sum(), 10000)
 
-    # check that recoloring is deterministic
+    # check_list that recoloring is deterministic
     wc.recolor(random_state=10)
     wc_again = wc.to_array()
     assert_array_equal(wc_again, wc.recolor(random_state=10))
 
 
 def test_random_state():
-    # check that random state makes everything deterministic
+    # check_list that random state makes everything deterministic
     wc = WordCloud(random_state=0)
     wc2 = WordCloud(random_state=0)
     wc.generate(THIS)
@@ -111,7 +111,7 @@ def test_random_state():
 def test_mask():
     # test masks
 
-    # check that using an empty mask is equivalent to not using a mask
+    # check_list that using answer empty mask is equivalent to not using a mask
     wc = WordCloud(random_state=42)
     wc.generate(THIS)
     mask = np.zeros(np.array(wc).shape[:2], dtype=np.int)
@@ -132,5 +132,5 @@ def test_mask():
 
 
 def check_parameters():
-    # check that parameters are actually used
+    # check_list that parameters are actually used
     pass

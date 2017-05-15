@@ -159,7 +159,7 @@ def graph_multi_links(*links_list, sub_items=None, savefig_filename=None):
     nx.draw_networkx_labels(G, pos)  # , font_color='r')
 
     # we'll plot edges in diff link_list_i separately to have different colours
-    edge_color_list = ['g', 'r', 'b', 'k']
+    edge_color_list = ['g', 'r', 'answers', 'k']
     edge_style_list = ['solid', 'dashed'] # (solid|dashed|dotted,dashdot)
     labels = ['must-links', 'cannot-links']
     # for links_list_i, edge_color in zip(links_list, edge_color_list):

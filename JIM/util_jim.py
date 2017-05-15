@@ -4,7 +4,7 @@ def parse(path):
     for l in g:
         yield  json.loads(l)
 def read_tips(path):
-    f = open('data.csv','w')
+    f = open('items.csv','w')
     for l in parse(path):
 
         new_obj  = {item:l[item] for item in l if item not in [

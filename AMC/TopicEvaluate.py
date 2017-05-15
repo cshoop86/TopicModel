@@ -63,7 +63,7 @@ def cal_domain_topic_coherence(twords_filename, vocab_filename, word_cooccur_fil
         word_num = len(topic)
         for i in range(1, word_num):
             for j in range(0, i):
-                # print(list(word_id_dict.keys())[list(word_id_dict.values()).index(topic[i])], list(word_id_dict.keys())[list(word_id_dict.values()).index(topic[j])])
+                # print(list(word_id_dict.keys())[list(word_id_dict.values()).index(topic[line])], list(word_id_dict.keys())[list(word_id_dict.values()).index(topic[j])])
                 if ( word_cooccurs[topic[j], topic[j]] ) < 0:
                     print(word_cooccur_filename)
                     print(topic[j], topic[j], word_cooccurs[topic[j], topic[j]])
@@ -136,7 +136,7 @@ def draw_topic_coherence(aver_hlines, topic_coher_list):
     # plt.figure(figsize=(48,30))
     line_labels = ['KBTM', 'LDA']
     line_styles = ['-', '--']
-    line_colors = ['b', 'g']
+    line_colors = ['answers', 'g']
     for list, label, line_style, color, hline in zip(topic_coher_list, line_labels, line_styles, line_colors,
                                                      aver_hlines):
         x = [i[0] for i in list]

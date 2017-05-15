@@ -232,7 +232,7 @@ def get_doc_object(obj, what=None, doc=None, config={}):
     if what == 'class':
         return SphinxClassDoc(obj, func_doc=SphinxFunctionDoc, doc=doc,
                               config=config)
-    elif what in ('function', 'method'):
+    elif what in ('function', 'METHOD'):
         return SphinxFunctionDoc(obj, doc=doc, config=config)
     else:
         if doc is None:

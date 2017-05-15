@@ -110,7 +110,7 @@ def top_k_list(par,nearplace,user_id,lat,lon,contents,k):
 
         prob_dist[place] = prob_z * prob_r
     #print prob_dist
-    prob_dist = sorted(prob_dist.iteritems(),key = lambda prob_dist:prob_dist[1],reverse= True)
+    prob_dist = sorted(iter(prob_dist.items()),key = lambda prob_dist:prob_dist[1],reverse= True)
     #print prob_dist
     keys = [item[0] for item in prob_dist]
     m = []
@@ -151,7 +151,7 @@ def evaluate(user_location,count_cubic_u,d,k):
     model_pickle_path = resultspath + 'model.pickle'
     model_pickle = open(model_pickle_path,'rb')
     par = pickle.load(model_pickle)
-    print 'loading is done....'
+    print('loading is done....')
     normalized_parameters(par)
 
     # print 'hometown pre.....'
@@ -179,7 +179,7 @@ def evaluate(user_location,count_cubic_u,d,k):
         try:
             locations = user_location[user]
         except:
-            print 'wrong'
+            print('wrong')
             continue
         for location in locations:
             # print '^^^^', location
@@ -192,7 +192,7 @@ def evaluate(user_location,count_cubic_u,d,k):
             # near_place = get_nearplace(par,test_lat,test_lon,d)
             near_place = POI_candi[location]
             near_place.append(location)
-            print "near_place:"+str(len(near_place))
+            print("near_place:"+str(len(near_place)))
             num += 1
             results_list = top_k_list(par,near_place,user_id,test_lat,test_lon,contents,k)
             # print 'topk_list....'
@@ -219,7 +219,7 @@ def evaluate(user_location,count_cubic_u,d,k):
                 except:
                     print 'outtown correct:'+str('0.00')'''
 
-    print 'topk... ', k, '....accuracy.... ', str(hit*1.0/total)
+    print('topk... ', k, '....accuracy.... ', str(hit*1.0/total))
     # print 'hometown accuracy:' + str(hometown_correct *1.0/hometown_total)
 
 
@@ -249,16 +249,16 @@ def normalized_parameters(par):
             vartheta[u] = 1.0*vartheta[u] +par['gamma'][0]
             vartheta[u] = 1.0*vartheta[u]/sum(vartheta[u])
 
-    # for t in range(par['T']):
-    #     if sum(omega[t]) == 0:
-    #         omega[t] = np.asarray([1.0/len(omega[t]) for _ in range(len(omega[t]))])
+    # for m in range(par['T']):
+    #     if sum(omega[m]) == 0:
+    #         omega[m] = np.asarray([1.0/len(omega[m]) for _ in range(len(omega[m]))])
     #     else:
-    #         omega[t] = np.asarray(omega[t])
-    #         omega[t][0] = 1.0*omega[t][0] +par['delta'][0]
-    #         omega[t][1] = 1.0*omega[t][1] +par['delta'][1]
-    #         total = omega[t][0] + omega[t][1]
-    #         omega[t][0] = omega[t][0]*1.0/total
-    #         omega[t][1] = omega[t][1]*1.0/total
+    #         omega[m] = np.asarray(omega[m])
+    #         omega[m][0] = 1.0*omega[m][0] +par['delta'][0]
+    #         omega[m][1] = 1.0*omega[m][1] +par['delta'][1]
+    #         total = omega[m][0] + omega[m][1]
+    #         omega[m][0] = omega[m][0]*1.0/total
+    #         omega[m][1] = omega[m][1]*1.0/total
 
     for t in range(par['T']):
         if sum(psi[t]) == 0:
@@ -276,13 +276,13 @@ def normalized_parameters(par):
             phi[r] = 1.0*phi[r] +par['tau'][0]
             phi[r] = 1.0*phi[r]/sum(phi[r])
 
-    # for t in range(par['T']):
+    # for m in range(par['T']):
     #     for s in range(par['S']):
     #         for c in range(par['C']):
-    #             if varphi_sum[t][s] == 0:
-    #                 varphi[t][s][c] = 1.0/par['C']
+    #             if varphi_sum[m][s] == 0:
+    #                 varphi[m][s][c] = 1.0/par['C']
     #             else:
-    #                 varphi[t][s][c] = (varphi[t][s][c] + par['beta'][c])*1.0/(varphi_sum[t][s]+par['C'])
+    #                 varphi[m][s][c] = (varphi[m][s][c] + par['beta'][c])*1.0/(varphi_sum[m][s]+par['C'])
 def approximation(value,num):
     return round(value,1)
 
@@ -292,13 +292,13 @@ def computehomelocation(par):
     for u in range(par['U']):
         result = {}
         # result.setdefault()
-        for i in range(par['N'][u]):
+        for i in range(par['N1'][u]):
             lat = par['lv'][u][i][0]
             lon = par['lv'][u][i][1]
             x = approximation(lat,num)
             y = approximation(lon,num)
-            if result.has_key(x):
-                if result[x].has_key(y):
+            if x in result:
+                if y in result[x]:
                     # result[x][y].setdefault([])
                     result[x][y].append(par['lv'][u][i])
                 else:
@@ -309,8 +309,8 @@ def computehomelocation(par):
                 result[x] = temp_dict
         max = 0
         home = []
-        for x,y_value in result.items():
-            for y,locations in y_value.items():
+        for x,y_value in list(result.items()):
+            for y,locations in list(y_value.items()):
                 if len(result[x][y]) > max:
                     max = len(result[x][y])
                     home_t = []
@@ -319,7 +319,7 @@ def computehomelocation(par):
                     home = home_t
         sum_x = 0
         sum_y = 0
-        if result.has_key(home[0]) and result[home[0]].has_key(home[1]):
+        if home[0] in result and home[1] in result[home[0]]:
 
             l = result[home[0]][home[1]]
             for xx in l:

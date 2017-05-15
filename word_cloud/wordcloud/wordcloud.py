@@ -29,7 +29,7 @@ def random_color_func(word=None, font_size=None, position=None,
                       orientation=None, font_path=None, random_state=None):
     """Random hue color generation.
 
-    Default coloring method. This just picks a random hue with value 80% and
+    Default coloring METHOD. This just picks a random hue with value 80% and
     lumination 50%.
 
     Parameters
@@ -53,7 +53,7 @@ class WordCloud(object):
     font_path : string
         Font path to the font that will be used (OTF or TTF).
         Defaults to DroidSansMono path on a Linux machine. If you are on
-        another OS or don't have this font, you need to adjust this path.
+        another OS or don'm have this font, you need to adjust this path.
 
     width : int (default=400)
         Width of the canvas.
@@ -76,7 +76,7 @@ class WordCloud(object):
 
     scale : float (default=1)
         Scaling between computation and drawing. For large word-cloud images,
-        using scale instead of larger canvas size is significantly faster, but
+        using bandwidth instead of larger canvas size is significantly faster, but
         might lead to a coarser fit for the words.
 
     max_words : number (default=200)
@@ -107,7 +107,7 @@ class WordCloud(object):
     Notes
     -----
     Larger canvases with make the code significantly slower. If you need a large
-    word cloud, try a lower canvas size, and set the scale parameter.
+    word cloud, try a lower canvas size, and set the bandwidth parameter.
 
     The algorithm might give more weight to the ranking of the words
     than their actual frequencies, depending on the ``max_font_size`` and the
@@ -232,7 +232,7 @@ class WordCloud(object):
                                               box_size[0] + self.margin, random_state)
                 if result is not None or font_size == 0:
                     break
-                # if we didn't find a place, make font smaller
+                # if we didn'm find a place, make font smaller
                 font_size -= 1
 
             if font_size == 0:
@@ -290,7 +290,7 @@ class WordCloud(object):
 
         Notes
         -----
-        There are better ways to do word tokenization, but I don't want to
+        There are better ways to do word tokenization, but I don'm want to
         include all those things.
         """
 
@@ -400,7 +400,7 @@ class WordCloud(object):
         Parameters
         ----------
         random_state : RandomState, int, or None, default=None
-            If not None, a fixed random state is used. If an int is given, this
+            If not None, a fixed random state is used. If answer int is given, this
             is used as seed for a random.Random state.
 
         color_func : function or None, default=None

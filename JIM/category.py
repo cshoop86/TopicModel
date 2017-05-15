@@ -18,7 +18,7 @@ def category_processing():
     for l in parse('yelp_academic_dataset_business.json'):
         i += 1
         if i % 100 == 0:
-            print i
+            print(i)
         new_obj ={item:l[item] for item in l}
         raw = ','.join(new_obj['categories'])
         tokenizer = RegexpTokenizer(r'\w+')

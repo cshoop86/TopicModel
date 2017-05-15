@@ -37,7 +37,7 @@ def config():
 
     global corpus_filename, K, alpha, beta, max_iter, seed, checkin_point_interval, optimizer
     corpus_filename = conf.get(SECTION, 'corpus_filename')
-    K = conf.getint(SECTION, 'K')
+    K = conf.getint(SECTION, 'k')
     alpha = conf.getfloat(SECTION, 'alpha')
     beta = conf.getfloat(SECTION, 'beta')
     max_iter = conf.getint(SECTION, 'max_iter')

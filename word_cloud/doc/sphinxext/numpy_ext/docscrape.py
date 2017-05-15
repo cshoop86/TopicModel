@@ -454,7 +454,7 @@ class FunctionDoc(NumpyDocString):
         signature = self['Signature'].replace('*', '\*')
 
         roles = {'func': 'function',
-                 'meth': 'method'}
+                 'meth': 'METHOD'}
 
         if self._role:
             if not roles.has_key(self._role):

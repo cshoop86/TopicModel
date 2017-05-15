@@ -137,7 +137,7 @@ class NumpyPythonDomain(ManglingDomainBase, PythonDomain):
         'function': 'function',
         'class': 'class',
         'exception': 'class',
-        'method': 'function',
+        'METHOD': 'function',
         'classmethod': 'function',
         'staticmethod': 'function',
         'attribute': 'attribute',

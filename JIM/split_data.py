@@ -1,5 +1,7 @@
 import numpy as np
 import math
+
+
 def generator(records_by_user):
     all_train_location = set()
     all_test_location = set()
@@ -26,24 +28,23 @@ def generator(records_by_user):
                 if splits[0] in all_train_location:
                     current_test_records.append(record)
 
-
-
         test_records.append(current_test_records)
         for record in current_test_records:
             splits = record.split('\t')
             all_test_location.add(splits[0])
-    print len(all_user),len(all_test_location),len(all_train_location),len(all_test_location-all_train_location)
-    return all_test_location.issubset(all_train_location),train_records,test_records
+    print(len(all_user), len(all_test_location), len(all_train_location), len(all_test_location - all_train_location))
+    return all_test_location.issubset(all_train_location), train_records, test_records
 
-def write_data(train_p,test_p,train_records,test_records):
-    train_f = open(train_p,'w')
-    test_f = open(test_p,'w')
+
+def write_data(train_p, test_p, train_records, test_records):
+    train_f = open(train_p, 'w')
+    test_f = open(test_p, 'w')
     for records in train_records:
         for record in records:
-            train_f.write(record+'\n')
+            train_f.write(record + '\n')
     for records in test_records:
         for record in records:
-            test_f.write(record +'\n')
+            test_f.write(record + '\n')
     train_f.close()
     test_f.close()
 
@@ -55,19 +56,18 @@ def read_data(document_path):
     for line in f:
         line = line.strip('\n')
         splits = line.split('\t')
-        user =splits[5]
-        records_by_user.setdefault(user,[])
+        user = splits[5]
+        records_by_user.setdefault(user, [])
         records_by_user[user].append(line)
-    legal ,train_records, test_records = generator(records_by_user)
+    legal, train_records, test_records = generator(records_by_user)
     while not legal:
-        print 'not legal'
-        legal ,train_records, test_records = generator(records_by_user)
-    print 'Now writing....'
+        print('not legal')
+        legal, train_records, test_records = generator(records_by_user)
+    print('Now writing....')
     train_p = 'train.dat'
-    test_p  = 'test.dat'
-    write_data(train_p,test_p,train_records,test_records)
+    test_p = 'test.dat'
+    write_data(train_p, test_p, train_records, test_records)
+
+
 if __name__ == '__main__':
     read_data('result.csv')
-
-
-

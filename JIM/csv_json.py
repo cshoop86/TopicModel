@@ -1,5 +1,5 @@
 import json
-f = open('data.csv')
+f = open('items.csv')
 w_out = open('tips_result.json','w')
 for line in f :
     line = line.replace('\n','')

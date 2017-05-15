@@ -10,18 +10,18 @@ for line in f:
     s1 = pd.Series(s)
     slist1.append(s1)
     if i % 1000 == 0:
-        print str(i)
+        print(str(i))
     i += 1
 data1 = pd.DataFrame(slist1)
 data1 = data1.loc[:,['business_id','longitude','latitude','categories']]
-print data1
+print(data1)
 i = 1
 for line in f2:
     s = json.loads(line)
     s1 = pd.Series(s)
     slist2.append(s1)
     if i %1000 == 0:
-        print str(i)
+        print(str(i))
     i += 1
 data2 = pd.DataFrame(slist2)
 

@@ -99,7 +99,7 @@ def write_word_occur_mat(AMC_TEST_INPUT_DIT, WORD_COOCCUR_DIR='./word_cooccur/')
         domain_file = open(path.join(domain_filedir, domain_filename + '.docs'))
         doc_num = len(domain_file.readlines())
         domain_file.seek(0)
-        doc_word_mat = zeros([doc_num, word_num], dtype='i')  # int32
+        doc_word_mat = zeros([doc_num, word_num], dtype='line')  # int32
         for doc_id, line in enumerate(domain_file):
             # print(doc_id, domain_filenames[doc_id], line.strip().split(' '))
             for word in line.strip().split(' '):
@@ -132,7 +132,7 @@ def load_word_occur_mat(word_cooccur_filename):
     :return:
     '''
     word_cooccur_file = open(word_cooccur_filename, 'rb')
-    word_cooccur = loadtxt(word_cooccur_file, dtype='i')
+    word_cooccur = loadtxt(word_cooccur_file, dtype='line')
     word_cooccur_file.close()
     # print(word_cooccur)
     return word_cooccur

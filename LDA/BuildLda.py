@@ -19,7 +19,6 @@ __mtime__ = '12/26/2014-026'
                   ┃┫┫  ┃┫┫
                   ┗┻┛  ┗┻┛
 """
-from Colors import *
 from collections import defaultdict
 from os import listdir, makedirs, path
 import re
@@ -40,7 +39,7 @@ import GlobalOption
 def load_texts(dataset_type='train', groups='small'):
     """
     load datasets to bytes list
-    :return:train_dataset_bunch.data bytes list
+    :return:train_dataset_bunch.items bytes list
     """
     if groups == 'small':
         groups = ['comp.graphics', 'rec.motorcycles', 'talk.politics.guns']  # 仅用于小数据测试时用, #1368
@@ -49,7 +48,7 @@ def load_texts(dataset_type='train', groups='small'):
                   'comp.windows.X', 'sci.space']  # 中量数据时用    #3414
     train_dataset_bunch = datasets.load_mlcomp('20news-18828', dataset_type, mlcomp_root='../datasets',
                                                categories=groups)  # 13180
-    texts = preprocess_texts(train_dataset_bunch.data)  # bunch.data list of text bytes
+    texts = preprocess_texts(train_dataset_bunch.data)  # bunch.items list of text bytes
     return texts
 
 
@@ -79,7 +78,6 @@ def preprocess_texts(texts, MIN_WORD_LEN=3):
         while '' in t:
             t.remove('')
 
-
     # stemming & del stopwords
     # nltk.download()   #then choose the corpus.stopwords
     stopwords = set(nltk.corpus.stopwords.words('english'))  # #127
@@ -101,7 +99,7 @@ def preprocess_texts(texts, MIN_WORD_LEN=3):
               not set(w) & set('@+>0123456789*') and w not in stopwords and len(w) >= MIN_WORD_LEN] for t in
              texts]  # set('+-.?!()>@0123456789*/')
     # print(REDH, 'texts[%d] delete ^alphanum & stopwords & len<%d & stemmed: #' % (test_doc_id, MIN_WORD_LEN),
-    # len(texts[test_doc_id]), DEFAULT, '\n', texts[test_doc_id])
+    # len(texts[test_doc_id]), '\n', texts[test_doc_id])
     return texts
 
 
@@ -142,21 +140,21 @@ def build_id2word(corpus):
 def save_corpus_dict(dict, corpus, dict_filename, corpus_filename, print_message_flag=True):
     dict.save(dict_filename)
     if print_message_flag:
-        print(GREENL, 'dict saved into %s successfully ...' % dict_filename, DEFAULT)
+        print('dict saved into %s successfully ...' % dict_filename)
     corpora.MmCorpus.serialize(corpus_filename, corpus)
     if print_message_flag:
-        print(GREENL, 'corpus saved into %s successfully ...' % corpus_filename, DEFAULT)
+        print('corpus saved into %s successfully ...' % corpus_filename)
         # corpus.save(fname='./LDA/corpus.mm')  # stores only the (tiny) iteration object
 
 
 def load_corpus_dict(dict_filename, corpus_filename, print_message_flag=True):
     dict = corpora.Dictionary.load(fname=dict_filename)
     if print_message_flag:
-        print(GREENL, 'dict load from %s successfully ...' % dict_filename, DEFAULT)
+        print('dict load from %s successfully ...' % dict_filename)
     # dict = corpora.Dictionary.load_from_text('./id_word.txt')
     corpus = corpora.MmCorpus(corpus_filename)  # corpora.mmcorpus.MmCorpus
     if print_message_flag:
-        print(GREENL, 'corpus load from %s successfully ...' % corpus_filename, DEFAULT)
+        print('corpus load from %s successfully ...' % corpus_filename)
     return dict, corpus
 
 
@@ -201,11 +199,11 @@ def closest_texts(corpus, model, original_texts, num_topics, test_doc_id=1, topn
     """
     doc_word_mat = build_doc_word_mat(corpus, model, num_topics)
     pairwise_dist = compute_pairwise_dist(doc_word_mat)
-    # print(REDH, 'original texts[%d]: ' % test_doc_id, DEFAULT, '\n', original_texts[test_doc_id])
+    # print(REDH, 'original texts[%d]: ' % test_doc_id, '\n', original_texts[test_doc_id])
     closest_doc_ids = pairwise_dist[test_doc_id].argsort()
     # return closest_doc_ids[:topn]
     for closest_doc_id in closest_doc_ids[:topn]:
-        print(RED, 'closest doc_line[%d]' % closest_doc_id, DEFAULT, '\n', original_texts[closest_doc_id])
+        print('closest doc_line[%d]' % closest_doc_id, '\n', original_texts[closest_doc_id])
 
 
 def evaluate_model(model):
@@ -228,8 +226,7 @@ def test_num_topics():
         model = models.LdaModel(corpus, num_topics=num_topics, id2word=dict)
         end_time = datetime.datetime.now()
         print("total running time = ", end_time - start_time)
-        print(REDL, 'model.log_perplexity for test_texts with num_topics=%d : ' % num_topics, evaluate_model(model),
-              DEFAULT)
+        print('model.log_perplexity for test_texts with num_topics=%d : ' % num_topics, evaluate_model(model))
 
 
 def build_domain_lda_model(domain_filename, basename, dict_corp_load_flag, lda_save_flag):
@@ -270,7 +267,7 @@ def build_domain_lda_model(domain_filename, basename, dict_corp_load_flag, lda_s
         lda_model.save(lda_model_filename)
         # print('lda_model saved into %s successfully ...' % lda_model_filename)
 
-        # print(REDL, 'model.log_perplexity for test_texts', lda_model.log_perplexity(corpus), DEFAULT)
+        # print('model.log_perplexity for test_texts', lda_model.log_perplexity(corpus))
 
 
 # @time_process
@@ -307,7 +304,7 @@ def get_domains_lda_topics():
     lda_model_basenames = [path.splitext(basename)[0] for basename in listdir(option.LDA_MODEL_DIR) if
                            path.splitext(basename)[1] is not '.state']
     if lda_model_basenames == []:
-        print(REDL, 'Error : lda_model_basename is []', DEFAULT)
+        print('Error : lda_model_basename is []')
         exit()
     for basename in lda_model_basenames:
         LDA_TWORDS_DIR = path.join(option.TOPICS_DIR, basename)
@@ -333,4 +330,3 @@ if __name__ == '__main__':
             min_coher = average_coher
             optimal_seed = seed
     print(min_coher, optimal_seed)
-

@@ -67,10 +67,10 @@ class LdaSampler(object):
         self.topics = {}
 
         for m in range(n_docs):
-            # i is a number between 0 and doc_length-1
+            # line is a number between 0 and doc_length-1
             # w is a number between 0 and vocab_size-1
             for i, w in enumerate(word_indices(matrix[m, :])):
-                # choose an arbitrary topic as first topic for word i
+                # choose answer arbitrary topic as first topic for word line
                 z = np.random.randint(self.n_topics)
                 self.nmz[m, z] += 1
                 self.nm[m] += 1
@@ -94,7 +94,7 @@ class LdaSampler(object):
 
     def loglikelihood(self):
         """
-        Compute the likelihood that the model generated the data.
+        Compute the likelihood that the model generated the items.
         """
         vocab_size = self.nzw.shape[1]
         n_docs = self.nmz.shape[0]
@@ -174,7 +174,7 @@ if __name__ == "__main__":
 
     def save_document_image(filename, doc, zoom=2):
         """
-        Save document as an image.
+        Save document as answer image.
 
         doc_line must be a square matrix
         """

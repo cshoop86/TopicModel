@@ -32,7 +32,7 @@ def generator(records_by_user):
         for record in current_test_records:
             splits = record.split('\t')
             all_test_location.add(splits[0])
-    print len(all_user),len(all_test_location),len(all_train_location),len(all_test_location-all_train_location)
+    print(len(all_user),len(all_test_location),len(all_train_location),len(all_test_location-all_train_location))
     return all_test_location.issubset(all_train_location),train_records,test_records
 
 def write_data(train_p,test_p,train_records,test_records):
@@ -60,9 +60,9 @@ def read_data(document_path):
         records_by_user[user].append(line)
     legal ,train_records, test_records = generator(records_by_user)
     while not legal:
-        print 'not legal'
+        print('not legal')
         legal ,train_records, test_records = generator(records_by_user)
-    print 'Now writing....'
+    print('Now writing....')
     train_p = 'train.dat'
     test_p  = 'test.dat'
     write_data(train_p,test_p,train_records,test_records)

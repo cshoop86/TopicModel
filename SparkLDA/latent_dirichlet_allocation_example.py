@@ -36,7 +36,7 @@ if __name__ == "__main__":
     sc = SparkContext(appName="LatentDirichletAllocationExample")  # SparkContext
 
     # $example on$
-    # Load and parse the data
+    # Load and parse the items
     data = sc.textFile("/home/pipi/files/DATASETS/SparkMLlib/sample_lda_data.txt")
     parsedData = data.map(lambda line: Vectors.dense([float(x) for x in line.strip().split(' ')]))
     # Index documents with unique IDs
